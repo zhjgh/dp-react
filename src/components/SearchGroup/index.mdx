@@ -1,0 +1,121 @@
+---
+name: SearchGroup
+route: /SearchGroup
+order: 1
+sidebar: true
+---
+
+import { Playground } from 'docz'
+import SearchGroup from './index'
+
+# SearchGroup 搜索
+#### 默认
+
+<Playground>
+  {() => {
+    const [searchParams, setSearchParams] = React.useState()
+
+    const fields = [
+      { name: '姓名', label: 'name' },
+      {
+        name: '性别',
+        label: 'type',
+        type: 'select',
+        options: [
+          { label: '男', value: '0' },
+          { label: '女', value: '1' },
+        ],
+      },
+      { name: '日期', label: 'date', type: 'datePicker' },
+      {
+        name: '日期范围',
+        label: ['dateStart', 'dateEnd'],
+        type: 'rangePicker',
+      },
+    ]
+
+    const onSearch = (values) => {
+      console.log(values)
+      setSearchParams(values)
+    }
+
+    return (
+      <SearchGroup fields={fields} onSearch={(values) => onSearch(values)} />
+    )
+  }}
+</Playground>
+
+#### 添加额外参数
+<Playground>
+  {() => {
+    const [searchParams, setSearchParams] = React.useState()
+
+    const fields = [
+      { name: '姓名', label: 'name' },
+    ]
+
+    const onSearch = (values) => {
+      console.log(values)
+      setSearchParams(values)
+    }
+
+    return (
+      <SearchGroup fields={fields} onSearch={(values) => onSearch(values)} extraParams={{ otherParams: '其他参数值' }} />
+    )
+  }}
+</Playground>
+
+#### 超过8个表单项
+
+<Playground>
+  {() => {
+    const [searchParams, setSearchParams] = React.useState()
+    const fields = [
+      { name: '姓名1', label: 'name1' },
+      { name: '姓名2', label: 'name2' },
+      { name: '姓名3', label: 'name3' },
+      { name: '姓名4', label: 'name4' },
+      { name: '姓名5', label: 'name5' },
+      { name: '姓名6', label: 'name6' },
+      {
+        name: '性别',
+        label: 'type',
+        type: 'select',
+        options: [
+          { label: '男', value: '0' },
+          { label: '女', value: '1' },
+        ],
+      },
+      { name: '日期', label: 'date', type: 'datePicker' },
+      {
+        name: '日期范围',
+        label: ['dateStart', 'dateEnd'],
+        type: 'rangePicker',
+      },
+    ]
+
+    const onSearch = (values) => {
+      console.log(values)
+      setSearchParams(values)
+    }
+
+    return (
+      <SearchGroup fields={fields} onSearch={(values) => onSearch(values)} />
+    )
+  }}
+</Playground>
+
+## 用法
+
+```
+import { SearchGroup } from 'dp-react'
+```
+
+## API文档
+| 属性          | 类型     | 默认值  | 备注             |
+|-------------|--------|------|----------------|
+| fields      | []     | 必选参数 | 表单项配置          |
+| onSearch    | func   | 必选参数 | 查询方法           |
+| colSpan     | number | 6    | antd的基础props   |
+| maxNum      | number | 8    | 表单项显示最大数量，超过隐藏 |
+| extraParams | {}     | 可选参数 | 额外参数           |

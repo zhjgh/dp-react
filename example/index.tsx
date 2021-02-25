@@ -1,19 +1,3 @@
-<h1 align="center">Welcome to dp-react 👋</h1>
-
-## 依赖
-
-- react >= 16.8
-- antd4.x
-
-## 按照
-
-```sh
-yarn add dp-react -S
-```
-
-## 使用
-
-```sh
 import 'react-app-polyfill/ie11'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -144,24 +128,3 @@ const App = () => {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
-```
-
-## SearchGroup fields说明
-
-| 属性           | 说明        | 类型                                                | 默认值     |
-|--------------|-----------|---------------------------------------------------|---------|
-| name         | 展示名称      | string                                            |         |
-| label        | 传参名称      | string | []                                       |         |
-| type         | 表单类型      | 'input' | 'select' | 'datePicker' | 'rangePicker' | 'input' |
-| initialValue | 初始值       |                                                   |         |
-| options      | 下拉框选项（可选） | [{ label: '男', value: '0' }]                      |         |
-
-## Table Props说明
-
-| 属性          | 类型                              | 默认值                          | 备注               |
-|-------------|---------------------------------|------------------------------|------------------|
-| owncolumns  | (updatefunc:Function) : columns | 必选参数                         | updatefunc用于刷新列表 |
-| queryAction | (payload):Promise               | 必选参数                         | 用于列表数据获取         |
-| baseProps   | TableProps from antd            | 任选                           | antd的基础props     |
-| params      | object                          | {}                           | 请求附加参数           |
-

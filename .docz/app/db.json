@@ -1,0 +1,161 @@
+{
+  "config": {
+    "title": "系统组件库",
+    "description": "基于antd4.x封装的组件",
+    "menu": [],
+    "version": "0.1.0",
+    "repository": false,
+    "native": false,
+    "codeSandbox": true,
+    "themeConfig": {
+      "mode": "light"
+    },
+    "separator": "-",
+    "typescript": true,
+    "theme": "D:/dp-npm/dp-react/node_modules/docz-theme-umi/es/index.js",
+    "base": "/dp-react",
+    "plugins": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "props": [
+    {
+      "key": "src\\components\\SearchGroup\\index.tsx",
+      "value": [
+        {
+          "tags": {},
+          "description": "",
+          "displayName": "SearchGroup",
+          "methods": [],
+          "props": {}
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "key": "src/components/Home/index.mdx",
+      "value": {
+        "name": "介绍",
+        "route": "/dp-react/",
+        "order": 0,
+        "sidebar": true,
+        "id": "2117acc826851f94875459a69e7dac9c",
+        "filepath": "src/components/Home/index.mdx",
+        "link": "",
+        "slug": "src-components-home-index",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "dp-react基于antd4x封装的组件库",
+            "depth": 1,
+            "value": "dp-react——基于antd4.x封装的组件库"
+          },
+          {
+            "slug": "技术实现与版本",
+            "depth": 1,
+            "value": "技术实现与版本"
+          },
+          {
+            "slug": "使用",
+            "depth": 2,
+            "value": "使用"
+          },
+          {
+            "slug": "安装",
+            "depth": 2,
+            "value": "安装"
+          },
+          {
+            "slug": "使用-1",
+            "depth": 2,
+            "value": "使用"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/SearchGroup/index.mdx",
+      "value": {
+        "name": "SearchGroup",
+        "route": "/dp-react/SearchGroup",
+        "order": 1,
+        "sidebar": true,
+        "id": "c8acd1992c31ab324b9b9a46e8bd54f8",
+        "filepath": "src/components/SearchGroup/index.mdx",
+        "link": "",
+        "slug": "src-components-search-group-index",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "searchgroup-搜索",
+            "depth": 1,
+            "value": "SearchGroup 搜索"
+          },
+          {
+            "slug": "默认",
+            "depth": 4,
+            "value": "默认"
+          },
+          {
+            "slug": "添加额外参数",
+            "depth": 4,
+            "value": "添加额外参数"
+          },
+          {
+            "slug": "超过8个表单项",
+            "depth": 4,
+            "value": "超过8个表单项"
+          },
+          {
+            "slug": "用法",
+            "depth": 2,
+            "value": "用法"
+          },
+          {
+            "slug": "api文档",
+            "depth": 2,
+            "value": "API文档"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/components/Table/index.mdx",
+      "value": {
+        "name": "Table",
+        "route": "/dp-react/Table",
+        "order": 2,
+        "sidebar": true,
+        "id": "e4fed9eb9f71110660f2f80d020d48a1",
+        "filepath": "src/components/Table/index.mdx",
+        "link": "",
+        "slug": "src-components-table-index",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "table-表格",
+            "depth": 1,
+            "value": "Table 表格"
+          },
+          {
+            "slug": "用法",
+            "depth": 2,
+            "value": "用法"
+          },
+          {
+            "slug": "api文档",
+            "depth": 2,
+            "value": "API文档"
+          }
+        ]
+      }
+    }
+  ]
+}
