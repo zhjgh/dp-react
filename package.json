@@ -75,18 +75,6 @@
   "engines": {
     "node": ">=10"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "react-hooks/exhaustive-deps": "off"
-  },
   "author": "zhanghj",
   "size-limit": [
     {
