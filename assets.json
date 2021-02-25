@@ -1,9 +1,9 @@
 {
-  "vendors.css": "/dp-react/static/css/vendors.6fd6c2921c5eff88a3b4.css",
+  "vendors.css": "/dp-react/static/css/vendors.e228d9e3381c497424dc.css",
   "vendors.js": "/dp-react/static/js/vendors.6e698de4.js",
-  "app.js": "/dp-react/static/js/app.6fd6c2921c5eff88a3b4.js",
-  "src-components-home-index.js": "/dp-react/static/js/src-components-home-index.d4283f9a.js",
+  "app.js": "/dp-react/static/js/app.e228d9e3381c497424dc.js",
+  "src-components-home-index.js": "/dp-react/static/js/src-components-home-index.7179d6cb.js",
   "src-components-search-group-index.js": "/dp-react/static/js/src-components-search-group-index.c21c850f.js",
-  "src-components-table-index.js": "/dp-react/static/js/src-components-table-index.b200d540.js",
+  "src-components-table-index.js": "/dp-react/static/js/src-components-table-index.c2b843a7.js",
   "index.html": "/dp-react/index.html"
 }
