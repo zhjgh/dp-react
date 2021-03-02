@@ -1,9 +1,13 @@
 {
-  "vendors.css": "/dp-react/static/css/vendors.e228d9e3381c497424dc.css",
-  "vendors.js": "/dp-react/static/js/vendors.6e698de4.js",
-  "app.js": "/dp-react/static/js/app.e228d9e3381c497424dc.js",
-  "src-components-home-index.js": "/dp-react/static/js/src-components-home-index.7179d6cb.js",
-  "src-components-search-group-index.js": "/dp-react/static/js/src-components-search-group-index.c21c850f.js",
-  "src-components-table-index.js": "/dp-react/static/js/src-components-table-index.c2b843a7.js",
+  "vendors.css": "/dp-react/static/css/vendors.4aef528ce4b91f70789b.css",
+  "vendors.js": "/dp-react/static/js/vendors.0821f5ae.js",
+  "app.js": "/dp-react/static/js/app.4aef528ce4b91f70789b.js",
+  "src-components-home-index.js": "/dp-react/static/js/src-components-home-index.62450bb1.js",
+  "src-components-search-group-index.js": "/dp-react/static/js/src-components-search-group-index.fb255875.js",
+  "src-components-table-index.js": "/dp-react/static/js/src-components-table-index.5b0f8eec.js",
+  "src-components-upload-file-index.css": "/dp-react/static/css/src-components-upload-file-index.4aef528ce4b91f70789b.css",
+  "src-components-upload-file-index.js": "/dp-react/static/js/src-components-upload-file-index.3b28b055.js",
+  "src-components-upload-image-index.css": "/dp-react/static/css/src-components-upload-image-index.4aef528ce4b91f70789b.css",
+  "src-components-upload-image-index.js": "/dp-react/static/js/src-components-upload-image-index.1d9f9457.js",
   "index.html": "/dp-react/index.html"
 }
