@@ -1,13 +1,13 @@
 {
-  "vendors.css": "/dp-react/static/css/vendors.4aef528ce4b91f70789b.css",
+  "vendors.css": "/dp-react/static/css/vendors.810b5c8fcdbcbbe394c5.css",
   "vendors.js": "/dp-react/static/js/vendors.0821f5ae.js",
-  "app.js": "/dp-react/static/js/app.4aef528ce4b91f70789b.js",
+  "app.js": "/dp-react/static/js/app.810b5c8fcdbcbbe394c5.js",
   "src-components-home-index.js": "/dp-react/static/js/src-components-home-index.62450bb1.js",
   "src-components-search-group-index.js": "/dp-react/static/js/src-components-search-group-index.fb255875.js",
-  "src-components-table-index.js": "/dp-react/static/js/src-components-table-index.5b0f8eec.js",
-  "src-components-upload-file-index.css": "/dp-react/static/css/src-components-upload-file-index.4aef528ce4b91f70789b.css",
+  "src-components-table-index.js": "/dp-react/static/js/src-components-table-index.89d2b109.js",
+  "src-components-upload-file-index.css": "/dp-react/static/css/src-components-upload-file-index.810b5c8fcdbcbbe394c5.css",
   "src-components-upload-file-index.js": "/dp-react/static/js/src-components-upload-file-index.3b28b055.js",
-  "src-components-upload-image-index.css": "/dp-react/static/css/src-components-upload-image-index.4aef528ce4b91f70789b.css",
+  "src-components-upload-image-index.css": "/dp-react/static/css/src-components-upload-image-index.810b5c8fcdbcbbe394c5.css",
   "src-components-upload-image-index.js": "/dp-react/static/js/src-components-upload-image-index.1d9f9457.js",
   "index.html": "/dp-react/index.html"
 }
