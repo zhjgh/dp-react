@@ -1,0 +1,58 @@
+---
+name: UploadImage
+route: /UploadImage
+order: 3
+sidebar: true
+---
+
+import { Playground } from 'docz'
+import UploadImage from './index'
+
+# UploadImage 上传图片
+
+#### 默认
+<Playground>
+  <UploadImage 
+    action="http://platform-gateway.platform.svc.dragon/boss/file/uploadImgs"
+    headers={{
+      Token:
+        'eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2MTQ2MDA3ODMsInVpZCI6IjExMDUzIiwiaWF0IjoxNjE0NTg5OTgzfQ.MzVzrVZwSby3sep5HJkoBzWmsTaZ8ntRd0KsEavODjqz_P3n2DttL3QUuwsnGIIC4SwkTpq6-dv5mpTPiuZk0g',
+    }}
+  />
+</Playground>
+
+## 用法
+```sh
+import { UploadImage } from 'dp-react'
+
+<UploadImage 
+  action="http://platform-gateway.platform.svc.dragon/boss/file/uploadImgs"
+  headers={{
+    Token:
+      'eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2MTQ2MDA3ODMsInVpZCI6IjExMDUzIiwiaWF0IjoxNjE0NTg5OTgzfQ.MzVzrVZwSby3sep5HJkoBzWmsTaZ8ntRd0KsEavODjqz_P3n2DttL3QUuwsnGIIC4SwkTpq6-dv5mpTPiuZk0g',
+  }}
+/>
+```
+
+## API文档
+| 属性            | 说明           | 类型                        | 默认值        | 是否必传 |
+|---------------|--------------|---------------------------|------------|------|
+| action        | 上传图片请求地址     | string                    | -          | 是    |
+| headers       | 请求头参数        | {}                        | -          |      |
+| data          | 请求参数         | {}                        | -          |      |
+| maxSize       | 文件大小限制       | number                    | 2（单位M）     |      |
+| isShowImg     | 是否显示图片       | boolean                   | false      |      |
+| initialValues | 初始化数据        | []                        |            |      |
+| isCanRemove   | 是否可以删除       | boolean                   | true       |      |
+| multiple      | 是否可以同时上传多个图片 | boolean                   | false      |      |
+| isDragSort    | 是否开启拖拽排序     | boolean                   | false      |      |
+| maxCount      | 限制图片张数       | number                    | 1          |      |
+| direction     | 图片展示方向       | 'horizontal' | 'vertical' | horizontal |      |
+
+## 接口返回数据格式
+```
+{
+  state: 1, // 请求成功
+  result: ["http://img.dragonpass.com.cn/uploadFile/lounge/20210302/45cb8d2c-591f-4439-aa24-e06da3ccf929.png"]
+}
+```
