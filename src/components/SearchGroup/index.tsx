@@ -4,12 +4,16 @@ import { Card, Form, Row, Col, Button } from 'antd'
 import { SearchGroupProps, LabelType, SelectField } from '.'
 import Field from '../Field'
 import { pick } from 'lodash'
-import setting from './setting'
+import setting from '../../setting'
 
 const SearchGroup: React.FC<SearchGroupProps> = props => {
-  const [form] = Form.useForm()
-  const { maxNum, colSpan, onSearch, extraParams } = props
 
+  const colSpan = 6
+  const { maxNum, onSearch, fetchParams } = props
+  const [form] = Form.useForm()
+  const [isCollapsed, toggleCollapse] = useReducer(state => !state, true)
+
+  // 遍历数据
   const fields = useMemo(
     () =>
       props.fields.map(item => ({
@@ -20,11 +24,11 @@ const SearchGroup: React.FC<SearchGroupProps> = props => {
           placeholder:
             item.placeholder ||
             (item.type === 'rangePicker' && [
-              setting.text.startTime,
-              setting.text.endTime,
+              setting.searchGroup.startTime,
+              setting.searchGroup.endTime,
             ]) ||
-            (item.type === 'select' && setting.text.pleaseSelect) ||
-            `${setting.text.pleaseInput}${item.name}`,
+            (item.type === 'select' && setting.searchGroup.pleaseSelect) ||
+            `${setting.searchGroup.pleaseInput}${item.name}`,
           options:
             Object.prototype.toString.call((item as SelectField).options) ===
             '[object Array]'
@@ -40,15 +44,14 @@ const SearchGroup: React.FC<SearchGroupProps> = props => {
       })),
     [props.fields]
   )
-  const [isCollapsed, toggleCollapse] = useReducer(state => !state, true)
-
+  
   // 查询
   const onSubmit = () => {
     form
       .validateFields()
       .then(values => {
         onSearch({
-          ...(extraParams || {}),
+          ...(fetchParams || {}),
           ...fields
             .filter(v => v.type === 'rangePicker')
             .map(v => v.label)
@@ -80,16 +83,16 @@ const SearchGroup: React.FC<SearchGroupProps> = props => {
   }
 
   useEffect(() => {
-    if (Object.prototype.toString.call(extraParams) === '[object Object]') {
+    if (Object.prototype.toString.call(fetchParams) === '[object Object]') {
       form.setFieldsValue(
-        pick(extraParams, Object.keys(form.getFieldsValue() || {}))
+        pick(fetchParams, Object.keys(form.getFieldsValue() || {}))
       )
     }
     onSubmit()
   }, [])
 
   return (
-    <Card>
+    <Card className="dp-searchgroup">
       <Form form={form}>
         <Row gutter={[0, 10]} align="middle" style={{ marginBottom: 10 }}>
           {fields.map((v, i) => (
@@ -125,17 +128,17 @@ const SearchGroup: React.FC<SearchGroupProps> = props => {
         <Row justify="end" align="middle">
           <Col span={colSpan} style={{ paddingRight: 16, textAlign: 'right' }}>
             <Button type="primary" onClick={onSubmit}>
-              {setting.text.search}
+              {setting.searchGroup.search}
             </Button>
             {fields.length > maxNum ? (
               <Button style={{ marginLeft: 8 }} onClick={toggleCollapse}>
                 {isCollapsed
-                  ? setting.text.moreSearch
-                  : setting.text.hideSearch}
+                  ? setting.searchGroup.moreSearch
+                  : setting.searchGroup.hideSearch}
               </Button>
             ) : null}
             <Button style={{ marginLeft: 8 }} onClick={onClean}>
-              {setting.text.clean}
+              {setting.searchGroup.clean}
             </Button>
           </Col>
         </Row>
@@ -145,8 +148,7 @@ const SearchGroup: React.FC<SearchGroupProps> = props => {
 }
 
 SearchGroup.defaultProps = {
-  colSpan: 6,
-  maxNum: 8,
+  maxNum: 8
 }
 
 export default SearchGroup

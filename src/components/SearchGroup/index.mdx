@@ -45,27 +45,7 @@ import SearchGroup from './index'
   }}
 </Playground>
 
-#### 添加额外参数
-<Playground>
-  {() => {
-    const [searchParams, setSearchParams] = React.useState()
-
-    const fields = [
-      { name: '姓名', label: 'name' },
-    ]
-
-    const onSearch = (values) => {
-      console.log(values)
-      setSearchParams(values)
-    }
-
-    return (
-      <SearchGroup fields={fields} onSearch={(values) => onSearch(values)} extraParams={{ otherParams: '其他参数值' }} />
-    )
-  }}
-</Playground>
-
-#### 超过8个表单项
+#### 超过8个表单项，显示更多查询按钮
 
 <Playground>
   {() => {
@@ -105,17 +85,11 @@ import SearchGroup from './index'
   }}
 </Playground>
 
-## 用法
-
-```
-import { SearchGroup } from 'dp-react'
-```
 
 ## API文档
-| 属性          | 类型     | 默认值  | 备注             |
-|-------------|--------|------|----------------|
-| fields      | []     | 必选参数 | 表单项配置          |
-| onSearch    | func   | 必选参数 | 查询方法           |
-| colSpan     | number | 6    | antd的基础props   |
-| maxNum      | number | 8    | 表单项显示最大数量，超过隐藏 |
-| extraParams | {}     | 可选参数 | 额外参数           |
+| 属性          | 说明                    | 类型     | 默认值 | 是否必传 |
+|-------------|-----------------------|--------|-----|------|
+| fields      | 表单项配置                 | []     | -   | 是    |
+| onSearch    | 查询方法                  | func   | -   | 是    |
+| fetchParams | 请求附加参数                | {}     | -   |      |
+| maxNum      | 表单项显示最大数量，超过隐藏，显示更多按钮 | number | 8   |      |

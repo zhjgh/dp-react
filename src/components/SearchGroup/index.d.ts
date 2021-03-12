@@ -33,9 +33,8 @@ export type Field =
   | rangePickerField
 
 export interface SearchGroupProps {
-  fields: Field[];
-  onSearch(values: object): void;
-  colSpan: number;
-  maxNum: number;
-  extraParams?: { [key: string]: any };
+  fields: Field[]; // 必填，表单项配置
+  maxNum: number; // 表单项显示最大数量，超过隐藏，默认8
+  fetchParams?: { [key: string]: any }; // 额外请求参数
+  onSearch(values): void; // 查询方法
 }

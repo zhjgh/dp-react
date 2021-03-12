@@ -9,3 +9,11 @@ declare module '*.jpeg'
 declare module '*.gif'
 declare module '*.js'
 declare module 'lodash'
+declare module 'file-saver'
+declare global {
+  interface Window {
+    lang: any;
+  }
+}
+
+export {}

@@ -3,12 +3,14 @@
 目前已开发完成如下组件：
 * SearchGroup 查询组件
 * Table 表格组件
-
-正在开发的组件：
 * UploadFile 上传文件组件
 * UploadImage 上传图片组件
+
+正在开发的组件：
 * Export 导出组件
-* CustomSelect 下拉分页加载组件
+* AsyncExport 异步导出组件
+* Editor 富文本编辑器组件
+* SelectPagination 下拉分页加载组件
 
 后续会开发出更多优质轻量组件，敬请关注。
 
@@ -33,5 +35,9 @@ yarn add dp-react
 import { 
   SearchGroup,
   Table,
+  UploadFile,
+  UploadImage,
+  SelectSearch,
+  Export
 } from 'dp-react'
 ```
