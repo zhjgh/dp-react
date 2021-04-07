@@ -1,0 +1,73 @@
+.dp-inputNumber {
+  position: relative;
+  display: inline-block;
+  line-height: 30px;
+  width: 100%;
+  &.dp-inputNumber-prefix {
+    :global .ant-input-number-input {
+      padding-left: 35px;
+    }
+  }
+  :global .ant-input-number {
+    min-width: 110px;
+    width: 100%;
+  }
+
+  .dp-prefix {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    bottom: 1px;
+    display: flex;
+    width: 30px;
+    background-color: #f7f8fa;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    z-index: 1;
+    height: 30px;
+    line-height: 30px;
+  }
+  :global .ant-input-number:hover,
+  :global .ant-input-number-focused {
+    + span {
+      opacity: 0;
+    }
+  }
+  :global .ant-input-number-disabled:hover {
+    + span {
+      opacity: 1;
+    }
+  }
+  .dp-suffix {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    display: flex;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    z-index: 1;
+    height: 30px;
+    line-height: 30px;
+    background-color: #f7f8fa;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #e5e5e5;
+    opacity: 1;
+    transition-duration: 0.3s;
+  }
+}
+
+.dp-inputNumberCus {
+  &.dp-inputNumber-prefix {
+    :global .ant-input-number-input {
+      padding-left: 45px;
+    }
+  }
+  .dp-prefix {
+    width: 40px;
+  }
+}

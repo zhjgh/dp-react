@@ -1,0 +1,20 @@
+.dp-datepicker {
+  display: flex;
+  &_choose {
+    & > a {
+      margin: 0 8px;
+      &:first-child {
+        margin-left: 16px;
+      }
+    }
+  }
+  :global {
+    .ant-picker {
+      flex: 1;
+    }
+    .ant-btn {
+      min-width: 24px;
+      margin: 4px 0;
+    }
+  }
+}

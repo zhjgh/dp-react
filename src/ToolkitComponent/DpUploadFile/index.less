@@ -1,0 +1,168 @@
+.upload-file-html {
+  border-bottom-width: 0;
+  // width: 320px;
+  padding: 8px 0 0 16px;
+  box-sizing: border-box;
+  .upload-file-Pagination {
+    text-align: right;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+}
+
+.upload-file-wrapper {
+  width: 100%;
+  .upload-file-default {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    height: 40px;
+    &.upload-file-default--uploading {
+      height: 40px;
+      .upload-file-info {
+        padding-bottom: 4px;
+        box-sizing: border-box;
+      }
+    }
+  }
+  .upload-file-body {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .upload-file-info {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: #155bd4;
+      font-size: 14px;
+      height: 100%;
+      line-height: 14px;
+      overflow: hidden;
+      .upload-file-name {
+        flex: 1;
+        // overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;
+        color: #323233;
+        padding-left: 8px;
+      }
+      &.upload-file-info--error {
+        color: #d40000;
+        .upload-file-name {
+          color: #d40000;
+        }
+      }
+    }
+    .upload-file-operation {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 14px;
+      color: #155bd4;
+      span {
+        cursor: pointer;
+      }
+    }
+    :global .ant-divider {
+      background-color: #dcdee0;
+    }
+  }
+
+  .upload-file-describe {
+    width: 84px;
+    margin-top: 5px;
+  }
+  .upload-file-uploading {
+    height: 4px;
+    line-height: 4px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    :global .ant-progress {
+      height: 4px;
+      line-height: 4px;
+    }
+  }
+  :global .ant-progress-inner {
+    background-color: #dcdee0 !important;
+  }
+  :global .ant-progress-success-bg,
+  :global .ant-divider {
+    color: #dcdee0 !important;
+  }
+}
+
+.dp-upload {
+  .dp-file-upload--wapper {
+    .ant-default-file {
+      // width: 320px;
+      border: 1px solid #dcdee0;
+      border-radius: 0;
+      background-color: #ffffff;
+      height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .upload-btn-upload {
+        color: #969799;
+      }
+    }
+    :global .ant-upload.ant-upload-select,
+    :global .ant-upload-drag {
+      // width: 320px;
+      border-style: solid;
+      border-radius: 0;
+      background-color: #ffffff;
+      border-color: #dcdee0;
+      height: 84px;
+      border-width: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    :global .ant-upload.ant-upload-select-picture-card {
+      // width: 320px;
+      height: 80px;
+    }
+    &:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: ' ';
+      clear: both;
+      height: 0;
+    }
+  }
+}
+
+.upload-btn-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  .upload-btn-upload {
+    color: #155bd4;
+    margin-right: 8px;
+  }
+  .upload-btn-text {
+    color: #323233;
+    margin-right: 8px;
+  }
+  .upload-btn-length {
+    font-size: 14px;
+    color: #969799;
+  }
+}
+
+.ant-upload-text {
+  font-size: 12px;
+  color: #969799;
+  margin-top: 8px;
+  text-align: center;
+}
