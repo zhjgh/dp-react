@@ -1,5 +1,5 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: zhanghj
  * @Date: 2021-03-01 18:22:45
  * @LastEditors: zhanghj
@@ -14,11 +14,11 @@ interface IImageList {
   orderNumber?: number;
 }
 
-type Direction = 'horizontal' | 'vertical'
+type Direction = 'horizontal' | 'vertical';
 
 export interface IUploadImageProps {
   action: string; // 必填，上传图片请求地址
-  headers: {}, // 请求头参数
+  headers: {}; // 请求头参数
   fetchData: {}; // 请求参数
   maxSize: number; // 图片大小最大限制，默认15M
   isShowImg: boolean; // 是否支持图片预览，默认false
@@ -34,8 +34,8 @@ export interface IUploadImageProps {
   minSizeHeight?: number; // 图片最小高度
   maxSizeHeight?: number; // 图片最大高度
   disabled?: boolean;
-  explain?: string; 
+  explain?: string;
   showDescription?: boolean;
   placeholder?: string;
-  onChange(fileLists, operateType?, operateIndex?): {}
+  onChange(fileLists, operateType?, operateIndex?): {};
 }

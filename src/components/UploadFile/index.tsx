@@ -21,7 +21,7 @@ import {
 } from '@ant-design/icons';
 import { IUploadFileProps } from './index.d';
 import setting from '../../setting';
-import axios from 'axios'
+import axios from 'axios';
 import './index.less';
 
 const { Dragger } = Upload;
@@ -108,7 +108,7 @@ const UploadFile = forwardRef((props: IUploadFileProps, ref) => {
     const page = pageCurrent - 1;
     const list = removeLists.slice(
       page * pageSize + 0,
-      page * pageSize + pageSize
+      page * pageSize + pageSize,
     );
     setPageCurrent(list.length > 0 ? pageCurrent : page);
     setFileLists(removeLists);
@@ -122,7 +122,7 @@ const UploadFile = forwardRef((props: IUploadFileProps, ref) => {
     const page = pageCurrent < 1 ? 0 : pageCurrent - 1;
     const list = showList.slice(
       page * pageSize + 0,
-      page * pageSize + pageSize
+      page * pageSize + pageSize,
     );
     const obj: any = {
       xlsx: FileExcelOutlined,
@@ -235,11 +235,11 @@ const UploadFile = forwardRef((props: IUploadFileProps, ref) => {
   // 再次上传
   const onAgainUpload = async (list: any, index: number) => {
     const upList = [...list];
-    const formData = new FormData()
-    for(let key in data){
-      formData.append(key, data[key])
+    const formData = new FormData();
+    for (let key in data) {
+      formData.append(key, data[key]);
     }
-    formData.append('file', upList[index].originFileObj)
+    formData.append('file', upList[index].originFileObj);
     try {
       // 改为上传状态
       upList[index].status = 'uploading';
@@ -251,14 +251,16 @@ const UploadFile = forwardRef((props: IUploadFileProps, ref) => {
           data: formData,
           headers: {
             ...headers,
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
           },
-        }).then(res => {
-          reslove(res)
-        }).catch(err => {
-          reject(err)
         })
-      })
+          .then(res => {
+            reslove(res);
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
       if (res && res.state === '1') {
         upList[index].status = 'done';
         upList[index].url = res.result[0];

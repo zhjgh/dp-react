@@ -1,5 +1,5 @@
-import React from 'react'
-import { FieldsType, OptionsType } from '../Field/index.d'
+import React from 'react';
+import { FieldsType, OptionsType } from '../Field/index.d';
 
 export interface BaseField<T extends FieldsType> {
   name?: string | JSX.Element; // 表单名
@@ -30,7 +30,7 @@ export type Field =
   | InputField
   | SelectField
   | DatePickerField
-  | rangePickerField
+  | rangePickerField;
 
 export interface SearchGroupProps {
   fields: Field[]; // 必填，表单项配置

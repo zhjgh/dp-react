@@ -52,7 +52,7 @@ const Export: React.FC<IExportProps> = props => {
       let cvsArray = [];
       // 创建表头[一般表头由外部传入]
       cvsArray.push(
-        ['编号', '用户名', '官网', '报价', '创建日期'].join() + '\n'
+        ['编号', '用户名', '官网', '报价', '创建日期'].join() + '\n',
       );
       // 遍历分片
       for (let i = 0; i < step; i++) {

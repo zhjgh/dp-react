@@ -1,17 +1,16 @@
 // @ts-nocheck
-import React, { useMemo, useReducer, useEffect } from 'react'
-import { Card, Form, Row, Col, Button } from 'antd'
-import { SearchGroupProps, LabelType, SelectField } from '.'
-import Field from '../Field'
-import { pick } from 'lodash'
-import setting from '../../setting'
+import React, { useMemo, useReducer, useEffect } from 'react';
+import { Card, Form, Row, Col, Button } from 'antd';
+import { SearchGroupProps, LabelType, SelectField } from '.';
+import Field from '../Field';
+import { pick } from 'lodash';
+import setting from '../../setting';
 
 const SearchGroup: React.FC<SearchGroupProps> = props => {
-
-  const colSpan = 6
-  const { maxNum, onSearch, fetchParams } = props
-  const [form] = Form.useForm()
-  const [isCollapsed, toggleCollapse] = useReducer(state => !state, true)
+  const colSpan = 6;
+  const { maxNum, onSearch, fetchParams } = props;
+  const [form] = Form.useForm();
+  const [isCollapsed, toggleCollapse] = useReducer(state => !state, true);
 
   // 遍历数据
   const fields = useMemo(
@@ -34,17 +33,17 @@ const SearchGroup: React.FC<SearchGroupProps> = props => {
             '[object Array]'
               ? (item as SelectField).options
               : Object.prototype.toString.call(
-                  (item as SelectField).options
+                  (item as SelectField).options,
                 ) === '[object Object]'
               ? Object.entries(
-                  (item as SelectField).options
+                  (item as SelectField).options,
                 ).map(([name, value]) => ({ name, value }))
               : [],
         },
       })),
-    [props.fields]
-  )
-  
+    [props.fields],
+  );
+
   // 查询
   const onSubmit = () => {
     form
@@ -67,29 +66,29 @@ const SearchGroup: React.FC<SearchGroupProps> = props => {
                     ? values[start][1].format('YYYY-MM-DD')
                     : undefined,
               }),
-              values
+              values,
             ),
-        })
+        });
       })
       .catch(error => {
-        console.log(error)
-      })
-  }
+        console.log(error);
+      });
+  };
 
   // 清空
   const onClean = () => {
-    form.resetFields()
-    onSubmit()
-  }
+    form.resetFields();
+    onSubmit();
+  };
 
   useEffect(() => {
     if (Object.prototype.toString.call(fetchParams) === '[object Object]') {
       form.setFieldsValue(
-        pick(fetchParams, Object.keys(form.getFieldsValue() || {}))
-      )
+        pick(fetchParams, Object.keys(form.getFieldsValue() || {})),
+      );
     }
-    onSubmit()
-  }, [])
+    onSubmit();
+  }, []);
 
   return (
     <Card className="dp-searchgroup">
@@ -116,10 +115,7 @@ const SearchGroup: React.FC<SearchGroupProps> = props => {
                 initialValue={v.initialValue}
                 {...setting.layout.formItemLayout}
               >
-                <Field
-                  type={v.type}
-                  componentProps={v.componentProps}
-                />
+                <Field type={v.type} componentProps={v.componentProps} />
               </Form.Item>
             </Col>
           ))}
@@ -144,11 +140,11 @@ const SearchGroup: React.FC<SearchGroupProps> = props => {
         </Row>
       </Form>
     </Card>
-  )
-}
+  );
+};
 
 SearchGroup.defaultProps = {
-  maxNum: 8
-}
+  maxNum: 8,
+};
 
-export default SearchGroup
+export default SearchGroup;

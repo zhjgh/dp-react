@@ -4,4 +4,3 @@ export interface ITableProps {
   fetchParams: {}; // 请求附加参数
   baseProps: any; // antd Table基础配置
 }
-

@@ -1,5 +1,5 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: zhanghj
  * @Date: 2021-03-01 11:26:32
  * @LastEditors: zhanghj
@@ -7,7 +7,7 @@
  */
 export interface IUploadFileProps {
   action: string; // 必填，上传文件请求地址
-  headers: {}, // 请求头参数
+  headers: {}; // 请求头参数
   fetchData: {}; // 额外请求参数
   accept: []; // 限制上传的文件类型
   maxSize: number; // 文件大小限制

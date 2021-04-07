@@ -1,48 +1,25 @@
-*idea
-*.iml
-.idea/
-.ipr
-.iws
-*~
-~*
-*.diff
-*.patch
-*.bak
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/npm-debug.log*
+/yarn-error.log
+/yarn.lock
+/package-lock.json
+
+# production
+/dist
+/docs-dist
+
+# misc
 .DS_Store
-Thumbs.db
-.project
-.*proj
-.svn/
-*.swp
-*.swo
-*.log
-*.log.*
-*.json.gzip
-node_modules/
-.buildpath
-.settings
-npm-debug.log
-nohup.out
-_site
-_data
-dist
-/lib
-/es
-elasticsearch-*
-config/base.yaml
-/.vscode/
-/coverage
-yarn.lock
-package-lock.json
-components/**/*.js
-components/**/*.jsx
-!components/**/__tests__/**/*.js
-!components/**/__tests__/**/*.js.snap
-/.history
-# Docs templates
-site/theme/template/IconDisplay/*.js
-site/theme/template/IconDisplay/*.jsx
-site/theme/template/IconDisplay/fields.js
-*.tmp
-/.docz
-/.doc
+
+# umi
+.umi
+.umi-production
+.umi-test
+.env.local
+
+# ide
+/.vscode
+/.idea

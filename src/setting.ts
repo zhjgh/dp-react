@@ -2,10 +2,10 @@ const lang: any = ((window as any).lang = new Proxy(
   {},
   {
     get(target: any, name) {
-      return target[name] || name
+      return target[name] || name;
     },
-  }
-))
+  },
+));
 
 export default {
   searchGroup: {
@@ -38,20 +38,21 @@ export default {
     noData: (lang && lang['暂无数据']) || '暂无数据',
     canDragDrop: (lang && lang['可拖拽']) || '可拖拽',
     correctImage: (lang && lang['请上传正常图片格式']) || '请上传正常图片格式',
-    maxLengthLimit: (lang && lang['选择的图片不可超过']) || '选择的图片不可超过',
+    maxLengthLimit:
+      (lang && lang['选择的图片不可超过']) || '选择的图片不可超过',
     zhang: (lang && lang['张']) || '张',
     maxSizeLimit: (lang && lang['图片限制大小']) || '图片限制大小',
-    widthNoLessThan:  (lang && lang['图片宽度不能小于']) || '图片宽度不能小于',
-    widthNoMoreThan:  (lang && lang['图片宽度不能大于']) || '图片宽度不能大于',
-    heightNoLessThan:  (lang && lang['图片高度不能小于']) || '图片高度不能小于',
-    heightNoMoreThan:  (lang && lang['图片高度不能大于']) || '图片高度不能大于',
+    widthNoLessThan: (lang && lang['图片宽度不能小于']) || '图片宽度不能小于',
+    widthNoMoreThan: (lang && lang['图片宽度不能大于']) || '图片宽度不能大于',
+    heightNoLessThan: (lang && lang['图片高度不能小于']) || '图片高度不能小于',
+    heightNoMoreThan: (lang && lang['图片高度不能大于']) || '图片高度不能大于',
     pixel: (lang && lang['像素']) || '像素',
     horizontal: (lang && lang['请上传横图']) || '请上传横图',
     vertical: (lang && lang['请上传竖图']) || '请上传竖图',
   },
   selectSearch: {
     pleaseSelect: '请选择',
-    multiple: '可多选'
+    multiple: '可多选',
   },
   layout: {
     formItemLayout: {
@@ -65,4 +66,4 @@ export default {
       },
     },
   },
-}
+};
