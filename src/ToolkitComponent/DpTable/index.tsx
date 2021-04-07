@@ -1,12 +1,12 @@
+// @ts-nocheck
 import React, { useEffect, useCallback, useState, useRef } from 'react';
 import { Table } from 'antd';
-import _ from 'lodash';
+import lodash from 'lodash';
 
 function emptyString(obj: any) {
   const newObj = {};
   for (const key in obj) {
-    // @ts-ignore
-    _.trim(obj[key]) === ''
+    lodash.trim(obj[key]) === ''
       ? (newObj[key] = undefined)
       : (newObj[key] = obj[key]);
   }
