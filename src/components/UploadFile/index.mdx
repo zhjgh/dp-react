@@ -1,0 +1,110 @@
+---
+name: UploadFile
+route: /UploadFile
+order: 3
+sidebar: true
+---
+
+import { Playground } from 'docz'
+import UploadFile from './index'
+
+# UploadFile 上传文件
+
+#### 默认
+<Playground>
+  <UploadFile 
+    action="http://platform-gateway.platform.svc.dragon/boss/file/uploadFile"
+    headers={{
+      Token:
+        'eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2MTQ2MDA3ODMsInVpZCI6IjExMDUzIiwiaWF0IjoxNjE0NTg5OTgzfQ.MzVzrVZwSby3sep5HJkoBzWmsTaZ8ntRd0KsEavODjqz_P3n2DttL3QUuwsnGIIC4SwkTpq6-dv5mpTPiuZk0g',
+    }}
+  />
+</Playground>
+
+#### 初始化数据
+<Playground>
+  <UploadFile 
+    initialValues={[
+      {
+        uid: '-1',
+        name: 'image1.png',
+        status: 'done',
+        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+      {
+        uid: '-2',
+        percent: 50,
+        name: 'image2.png',
+        status: 'uploading',
+        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+      {
+        uid: '-5',
+        name: 'image3.png',
+        status: 'error',
+      },
+    ]}
+  />
+</Playground>
+
+#### 分页大小限制
+<Playground>
+  <UploadFile 
+    initialValues={[
+      {
+        uid: '-1',
+        name: 'image1.png',
+        status: 'done',
+        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+      {
+        uid: '-2',
+        percent: 50,
+        name: 'image2.png',
+        status: 'uploading',
+        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+      {
+        uid: '-5',
+        name: 'image3.png',
+        status: 'error',
+      },
+    ]}
+    pageSize={2}
+  />
+</Playground>
+
+## 用法
+```sh
+import { UploadFile } from 'dp-react'
+
+<UploadFile
+  action="http://platform-gateway.platform.svc.dragon/boss/file/uploadFile"
+  headers={{
+    Token:
+      'eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2MTQ2MDA3ODMsInVpZCI6IjExMDUzIiwiaWF0IjoxNjE0NTg5OTgzfQ.MzVzrVZwSby3sep5HJkoBzWmsTaZ8ntRd0KsEavODjqz_P3n2DttL3QUuwsnGIIC4SwkTpq6-dv5mpTPiuZk0g',
+  }}
+/>
+```
+
+## API文档
+| 属性            | 说明            | 类型       | 默认值           | 是否必传 |
+|---------------|---------------|----------|---------------|------|
+| action        | 上传文件请求地址      | string   | -             | 是    |
+| headers       | 请求头参数，比如token | {}       | -             |      |
+| data          | 请求参数          | {}       | -             |      |
+| maxSize       | 文件大小限制        | number   | 15（单位M）       |      |
+| maxCount      | 文件最大上传数量      | number   | 1             |      |
+| isCanRemove   | 是否可以删除        | boolean  | true          |      |
+| pageSize      | 分页大小          | number   | 5             |      |
+| initialValues | 初始化数据         | []       | -             |      |
+| accept        | 限制上传的文件类型     | string[] | []，默认支持所有文件格式 |      |
+| explain       | 自定义文件大小限制说明   | string   |               |      |
+
+## 接口返回数据格式
+```
+{
+  state: 1, // 请求成功
+  result: ["http://img.dragonpass.com.cn/uploadFile/lounge/20210302/45cb8d2c-591f-4439-aa24-e06da3ccf929.png"]
+}
+```
