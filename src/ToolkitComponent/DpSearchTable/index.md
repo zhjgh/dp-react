@@ -12,7 +12,11 @@ order: 12
 
 ## 示例
 
-<code src="./index.tsx"></code>
+<code src="./demo.tsx"></code>
+
+## 弹框示例
+
+<code src="./model-demo.tsx"></code>
 
 ## 接口返回数据格式
 

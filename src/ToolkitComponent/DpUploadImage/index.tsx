@@ -49,6 +49,7 @@ const DpUploadImage: React.FC<PropsWithChildren<
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
   const [fileList, setFileList] = useState<any[]>([]);
+  const [status, setStatus] = useState('0');
 
   useEffect(() => {
     let _value;
@@ -134,10 +135,18 @@ const DpUploadImage: React.FC<PropsWithChildren<
         const image = new Image();
         image.onload = function(e: Event) {
           const el = e.target as HTMLImageElement;
-          // 校验图片信息
+          /* // 校验图片信息
           if (!isSizeImage(el.width, el.height)) {
             reject();
           } else {
+            resolve(el);
+          } */
+          // 校验图片信息
+          if (!isSizeImage(el.width, el.height)) {
+            setStatus('1');
+            reject();
+          } else {
+            setStatus('0');
             resolve(el);
           }
         };
@@ -149,7 +158,10 @@ const DpUploadImage: React.FC<PropsWithChildren<
   };
 
   // 上传前的判断
-  const handleBeforeUpload = (file: RcFile, fileLists: RcFile[]): any => {
+  const handleBeforeUpload = async (
+    file: RcFile,
+    fileLists: RcFile[],
+  ): Promise<any> => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
       message.error(`${lang.correctImage}`);
@@ -167,7 +179,12 @@ const DpUploadImage: React.FC<PropsWithChildren<
         reject();
       });
     }
-    return checkImageWH(file);
+    await checkImageWH(file);
+    if (status === '1') {
+      return new Promise((resolve, reject) => {
+        reject();
+      });
+    }
   };
 
   // 预览图片
@@ -183,8 +200,15 @@ const DpUploadImage: React.FC<PropsWithChildren<
   };
 
   const handleChange = (info: any) => {
-    setFileList(info.fileList);
-    onChange && onChange(info.fileList);
+    const { file, fileList, event } = info;
+    console.log(file.status, fileList);
+    if (file.status === 'done') {
+      console.log('上传成功');
+      setFileList(fileList);
+      onChange && onChange(fileList);
+    } else {
+      setFileList(fileList); // uploading removed
+    }
   };
 
   const uploadButton = (

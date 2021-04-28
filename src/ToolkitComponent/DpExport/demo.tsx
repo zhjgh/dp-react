@@ -5,7 +5,7 @@ const Demo = () => {
   return (
     <Export
       name="下载导入模板"
-      action="https://platform-gw-test.dragonpass.com.cn/boss/grant/equity/limousine/downloadTemplate"
+      action="http://platform-gateway.platform.svc.dragon/boss/grant/equity/limousine/downloadTemplate"
       headers={{
         Token: localStorage.getItem('token'),
       }}

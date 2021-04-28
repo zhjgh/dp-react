@@ -1,12 +1,14 @@
 // @ts-nocheck
 import React, { useEffect, useCallback, useState, useRef } from 'react';
 import { Table } from 'antd';
-import lodash from 'lodash';
+import _ from 'lodash';
+import lang from '@/locales';
 
 function emptyString(obj: any) {
   const newObj = {};
   for (const key in obj) {
-    lodash.trim(obj[key]) === ''
+    // @ts-ignore
+    _.trim(obj[key]) === ''
       ? (newObj[key] = undefined)
       : (newObj[key] = obj[key]);
   }
@@ -19,6 +21,7 @@ export interface IDpTableProps {
   fetchParams: object; // 请求附加参数
   searchParams: object; // 搜索项参数
   baseProps?: any; // antd Table基础配置，默认rowKey是id
+  pageSize?: number;
 }
 
 const DpTable: React.FC<IDpTableProps> = props => {
@@ -28,12 +31,13 @@ const DpTable: React.FC<IDpTableProps> = props => {
     fetchParams,
     baseProps,
     searchParams,
+    pageSize,
   } = props;
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(null);
   const [dataSource, setDataSource] = useState([]);
   const currentRef = useRef(1);
-  const pageSizeRef = useRef(10);
+  const pageSizeRef = useRef(pageSize || 10);
 
   // useCallback包装请求，缓存依赖，优化组件性能
   const fetchDataWarp = useCallback(fetchData, [searchParams]);
@@ -75,7 +79,7 @@ const DpTable: React.FC<IDpTableProps> = props => {
       current: currentRef.current,
       pageSize: pageSizeRef.current,
       total,
-      showTotal: (total: number) => `共 ${total} 条`,
+      showTotal: (total: number) => `${lang.total} ${total} ${lang.items}`,
       showSizeChanger: true,
       showQuickJumper: true,
       // pageSize 变化的回调

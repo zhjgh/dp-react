@@ -1,4 +1,10 @@
-import React, { PropsWithChildren, useMemo, useReducer } from 'react';
+import React, {
+  PropsWithChildren,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+} from 'react';
 import { Card, Form, Row, Col, Button } from 'antd';
 import { IDpSearchGroupProps, LabelType, SelectField } from './index.d';
 import DpField from './DpField';
@@ -18,10 +24,15 @@ const formItemLayout = {
 const DpSearchGroup: React.FC<PropsWithChildren<
   IDpSearchGroupProps
 >> = props => {
-  const colSpan = 6;
-  const { maxNum = 8, onSearch } = props;
+  const { maxNum = 8, onSearch, isClean = false, colSpan = 6 } = props;
   const [form] = Form.useForm();
   const [isCollapsed, toggleCollapse] = useReducer(state => !state, true);
+
+  useEffect(() => {
+    if (isClean) {
+      handleClean();
+    }
+  }, [isClean]);
 
   // 遍历数据
   const fields = useMemo(
@@ -52,10 +63,8 @@ const DpSearchGroup: React.FC<PropsWithChildren<
     [props.fields],
   );
 
-  console.log(fields);
-
   // 查询
-  const onSubmit = () => {
+  const handleSearch = () => {
     form
       .validateFields()
       .then(values => {
@@ -86,17 +95,18 @@ const DpSearchGroup: React.FC<PropsWithChildren<
   };
 
   // 清空
-  const onClean = () => {
+  const handleClean = () => {
     form.resetFields();
-    onSubmit();
+    handleSearch();
   };
 
   return (
     <Card>
       <Form form={form}>
-        <Row gutter={[0, 10]} align="middle" style={{ marginBottom: 10 }}>
+        <Row style={{ marginBottom: 10 }}>
           {fields.map((v, i) => (
             <Col
+              className="gutter-row"
               key={
                 typeof (v.label as LabelType) === 'string'
                   ? (v.label as string)
@@ -106,12 +116,12 @@ const DpSearchGroup: React.FC<PropsWithChildren<
               style={{ paddingRight: 16 }}
             >
               <Form.Item
-                label={v.name}
-                name={
+                label={
                   typeof (v.label as LabelType) === 'string'
                     ? (v.label as string)
                     : v.label[0]
                 }
+                name={v.name}
                 style={{ width: '100%' }}
                 initialValue={v.initialValue}
                 {...formItemLayout}
@@ -128,7 +138,7 @@ const DpSearchGroup: React.FC<PropsWithChildren<
 
         <Row justify="end" align="middle">
           <Col span={colSpan} style={{ paddingRight: 16, textAlign: 'right' }}>
-            <Button type="primary" onClick={onSubmit}>
+            <Button type="primary" onClick={handleSearch}>
               {lang.search}
             </Button>
             {fields.length > maxNum ? (
@@ -136,7 +146,7 @@ const DpSearchGroup: React.FC<PropsWithChildren<
                 {isCollapsed ? lang.moreSearch : lang.lessSearch}
               </Button>
             ) : null}
-            <Button style={{ marginLeft: 8 }} onClick={onClean}>
+            <Button style={{ marginLeft: 8 }} onClick={handleClean}>
               {lang.clean}
             </Button>
           </Col>

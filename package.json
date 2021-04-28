@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "dp-react",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "基于antd4.x封装的业务组件",
   "homepage": "https://github.com/zhjgh/dp-react/",
   "license": "MIT",

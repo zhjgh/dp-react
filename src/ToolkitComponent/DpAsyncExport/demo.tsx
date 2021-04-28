@@ -4,15 +4,15 @@ import DpAsyncExport from './index';
 const Demo = () => {
   return (
     <DpAsyncExport
-      url="https://platform-gw-test.dragonpass.com.cn/boss/grant/equity/limousine/downloadTemplate"
+      reqUrl="http://platform-gateway.platform.svc.dragon/boss/grant/equity/limousine/downloadTemplate"
       headers={{
         Token: localStorage.getItem('token'),
       }}
-      contentType="application/json"
-      name="导出"
+      encType="application/json"
+      btnName="导出"
       fileName="司机黑名单.xlsx"
       method="get"
-      type="primary"
+      btnType="primary"
     />
   );
 };

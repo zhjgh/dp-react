@@ -9,11 +9,11 @@ const demo = () => {
 
   // 搜索栏数据
   const fields = [
-    { name: '编码', label: 'code' },
-    { name: '名称', label: 'name' },
+    { label: '编码', name: 'code' },
+    { label: '名称', name: 'name' },
     {
-      name: '状态',
-      label: 'status',
+      label: '状态',
+      name: 'status',
       type: 'select',
       options: [
         { label: '禁用', value: '0' },
@@ -21,8 +21,8 @@ const demo = () => {
       ],
     },
     {
-      name: '自定义组件',
-      label: 'timeRanges',
+      label: '自定义组件',
+      name: 'timeRanges',
       type: 'self',
       component: (
         <DpSelect

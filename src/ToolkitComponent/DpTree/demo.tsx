@@ -15,7 +15,7 @@ const Demo = () => {
       axios({
         method: 'post',
         url:
-          'https://platform-gw-test.dragonpass.com.cn/boss/supplier/info/getTree',
+          'http://platform-gateway.platform.svc.dragon/boss/supplier/info/getTree',
         data: { lg: 'zh-cn' },
         headers: {
           Token: localStorage.getItem('token'),

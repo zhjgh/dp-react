@@ -104,6 +104,46 @@ const API = {
         });
     });
   },
+  listAgreementInputSelect: async function(req: any) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url:
+          'https://platform-gw-test.dragonpass.com.cn/boss/cust/agreement/listAgreementInputSelect',
+        data: req,
+        headers: {
+          Token: localStorage.getItem('token'),
+        },
+      })
+        .then(result => {
+          resolve(result.data);
+        })
+        .catch(err => {
+          console.error(err);
+          reject(err);
+        });
+    });
+  },
+  listProjectInputSelect: async function(req: any) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url:
+          'https://platform-gw-test.dragonpass.com.cn/boss/pass/customer/listProjectInputSelect',
+        data: req,
+        headers: {
+          Token: localStorage.getItem('token'),
+        },
+      })
+        .then(result => {
+          resolve(result.data);
+        })
+        .catch(err => {
+          console.error(err);
+          reject(err);
+        });
+    });
+  },
 };
 
 export default API;

@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import { Select, Spin } from 'antd';
 import axios from 'axios';
-import lodash from 'lodash';
+import _ from 'lodash';
 import lang from '@/locales';
 
 import { SelectProps } from 'antd/es/select';
@@ -97,7 +97,7 @@ const DpSearchSelect = forwardRef((props: IDpSearchSelectProps, ref: any) => {
       setFetching(false);
     };
 
-    return lodash.debounce(loadOptions, debounceTimeout);
+    return _.debounce(loadOptions, debounceTimeout);
   }, [fetchOptions, debounceTimeout]);
 
   const setData = (value: any) => {

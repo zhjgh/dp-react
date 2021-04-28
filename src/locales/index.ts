@@ -52,4 +52,6 @@ export default {
   no: (lang && lang['否']) || '否',
   timeRanges: (lang && lang['时间范围']) || '时间范围',
   pleaseComplete: (lang && lang['请填写完整']) || '请填写完整',
+  total: (lang && lang['共']) || '共',
+  items: (lang && lang['条']) || '条',
 };

@@ -13,11 +13,15 @@ const Demo = () => {
     });
   };
 
+  const handleChange = (v: any) => {
+    console.log(v[0].response && v[0].response.result[0]);
+  };
+
   return (
     <Form form={form}>
       <FormItem name="image1">
         <DpUploadImage
-          reqUrl="https://platform-gw-test.dragonpass.com.cn/boss/file/uploadImgs"
+          reqUrl="http://platform-gateway.platform.svc.dragon/boss/file/uploadImgs"
           headers={{
             Token: localStorage.getItem('token'),
           }}
@@ -26,11 +30,12 @@ const Demo = () => {
             channel: 'platform',
             moduleId: 'equity',
           }}
+          onChange={handleChange}
         />
       </FormItem>
       <FormItem name="image2">
         <DpUploadImage
-          reqUrl="https://platform-gw-test.dragonpass.com.cn/boss/file/uploadImgs"
+          reqUrl="http://platform-gateway.platform.svc.dragon/boss/file/uploadImgs"
           headers={{
             Token: localStorage.getItem('token'),
           }}

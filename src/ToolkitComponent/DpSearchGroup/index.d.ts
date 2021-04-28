@@ -36,6 +36,8 @@ export type Field =
 
 export interface IDpSearchGroupProps {
   fields: any[]; // 必填，表单项配置
+  isClean?: boolean; // 是否清空，关闭弹框的时候设置为true执行form.resetFields()和handleSearch方法
   onSearch(values: any): void; // 必填，查询方法
   maxNum?: number; // 表单项显示最大数量，超过隐藏，默认8
+  colSpan?: number; // 表单项宽度，默认6，每行4个。计算24/6=4
 }

@@ -19,7 +19,7 @@ const Demo = () => {
         <IDpSearchSelect
           labelInValue={false}
           initialValues="2611"
-          reqUrl="https://platform-gw-test.dragonpass.com.cn/boss/supplier/info/getPage"
+          reqUrl="http://platform-gateway.platform.svc.dragon/boss/supplier/info/getPage"
           reqParams={{
             lg: 'zh-cn',
           }}

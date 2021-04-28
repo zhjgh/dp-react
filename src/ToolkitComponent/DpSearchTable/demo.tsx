@@ -1,23 +1,25 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 import { Popconfirm, Button, Card } from 'antd';
 import DpSearchGroup from '@/ToolkitComponent/DpSearchGroup';
 import DpTable from '@/ToolkitComponent/DpTable';
-import Modal from './components/Modal';
+import DpModal from './components/Modal';
 import api from '@/services/api';
 import 'antd/dist/antd.css';
 
 const DpSearchTable: React.FC = () => {
   const [searchParams, setSearchParams] = useState({});
-  const [visible, setVisible] = useState(false);
   const [currentRecord, setCurrentRecord] = useState({});
+  const [visible, setVisible] = useState(false);
+  const [isClean, setIsClean] = useState(false);
+  const isCleanRef = useRef(false);
 
   // 搜索栏数据
   const fields = [
-    { name: 'code', label: 'code' },
-    { name: '名称', label: 'name' },
+    { label: '编码', name: 'code' },
+    { label: '名称', name: 'name' },
     {
-      name: '状态',
-      label: 'status',
+      label: '状态',
+      name: 'status',
       type: 'select',
       options: [
         { label: '禁用', value: '0' },
@@ -100,11 +102,12 @@ const DpSearchTable: React.FC = () => {
   const onOperate = (record: any) => {
     setVisible(true);
     setCurrentRecord(record);
+    setIsClean(false);
   };
 
   return (
     <Fragment>
-      <DpSearchGroup fields={fields} onSearch={onSearch} />
+      <DpSearchGroup fields={fields} onSearch={onSearch} isClean={isClean} />
       <Card style={{ marginTop: '20px' }}>
         <Button
           type="primary"
@@ -120,13 +123,16 @@ const DpSearchTable: React.FC = () => {
           searchParams={searchParams}
         />
       </Card>
-      <Modal
+      <DpModal
         visible={visible}
         currentRecord={currentRecord}
-        onClose={() => setVisible(false)}
+        onClose={() => {
+          setVisible(false);
+          setIsClean(true);
+        }}
         onConfirm={() => {
           setVisible(false);
-          onSearch({ ...searchParams });
+          setIsClean(true);
         }}
       />
     </Fragment>

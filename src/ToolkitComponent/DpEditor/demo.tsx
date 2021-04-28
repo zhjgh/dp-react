@@ -25,7 +25,7 @@ const Demo = () => {
     <Form form={form}>
       <FormItem name="editor">
         <DpEditor
-          uploadUrl="https://platform-gw-test.dragonpass.com.cn/boss/file/uploadImgs"
+          uploadUrl="http://platform-gateway.platform.svc.dragon/boss/file/uploadImgs"
           headers={['Token', localStorage.getItem('token')]}
           channel="test"
         />
