@@ -49,7 +49,7 @@ const DpUploadImage: React.FC<PropsWithChildren<
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
   const [fileList, setFileList] = useState<any[]>([]);
-  const [status, setStatus] = useState('0');
+  const [spinLoading, setSpinLoading] = useState(false);
 
   useEffect(() => {
     let _value;
@@ -83,7 +83,6 @@ const DpUploadImage: React.FC<PropsWithChildren<
   // 取消
   const handleCancel = () => setPreviewVisible(false);
 
-  // 根据宽高判断
   const isSizeImage = (nw: number, nh: number) => {
     if (!!minSizeWidth && minSizeWidth > nw) {
       Modal.warning({
@@ -109,6 +108,7 @@ const DpUploadImage: React.FC<PropsWithChildren<
       });
       return false;
     }
+
     let flag = true;
     if (!!direction && direction === 'vertical') {
       if (nw > nh) {
@@ -126,65 +126,78 @@ const DpUploadImage: React.FC<PropsWithChildren<
     return flag;
   };
 
-  // 检查图片宽高
-  const checkImageWH = (file: File) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.onload = (e: ProgressEvent<FileReader>) => {
-        const src = e.target?.result;
-        const image = new Image();
-        image.onload = function(e: Event) {
-          const el = e.target as HTMLImageElement;
-          /* // 校验图片信息
-          if (!isSizeImage(el.width, el.height)) {
-            reject();
-          } else {
-            resolve(el);
-          } */
-          // 校验图片信息
-          if (!isSizeImage(el.width, el.height)) {
-            setStatus('1');
-            reject();
-          } else {
-            setStatus('0');
-            resolve(el);
-          }
-        };
-        image.onerror = reject;
-        if (typeof src === 'string') image.src = src;
-      };
-      fileReader.readAsDataURL(file);
-    });
-  };
-
   // 上传前的判断
-  const handleBeforeUpload = async (
-    file: RcFile,
-    fileLists: RcFile[],
-  ): Promise<any> => {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    if (!isJpgOrPng) {
-      message.error(`${lang.correctImage}`);
-    }
-    if (maxCount < fileLists.length + fileList.length) {
-      message.error(
-        `${lang.maxCountLimit}${maxCount - fileList.length}${lang.zhang}`,
-      );
-      return new Promise((resolve, reject) => {
-        reject();
-      });
-    } else if (file.size / 1024 / 1024 > maxSize) {
-      message.error(`${lang.maxSizeLimit}${maxSize}M!`);
-      return new Promise((resolve, reject) => {
-        reject();
-      });
-    }
-    await checkImageWH(file);
-    if (status === '1') {
-      return new Promise((resolve, reject) => {
-        reject();
-      });
-    }
+  const handleBeforeUpload = (file: RcFile, fileLists: RcFile[]) => {
+    const {
+      isPictureCompress = false,
+      compressThreshold = 1,
+      pictureQuality = 0.1,
+    } = props;
+    const fileSize = file.size / 1024 / 1024;
+    console.log(`压缩前：${fileSize}M`);
+    return new Promise((resolve, reject) => {
+      const isLtCount = fileLists.length + fileList.length > maxCount;
+      const isJpgOrPng =
+        file.type === 'image/jpeg' || file.type === 'image/png';
+      if (!isJpgOrPng) {
+        message.error(`${lang.correctImage}`);
+        reject(`${lang.correctImage}`);
+      }
+      if (isLtCount) {
+        message.error(
+          `${lang.maxCountLimit}${maxCount - fileList.length}${lang.zhang}`,
+        );
+        reject(
+          `${lang.maxCountLimit}${maxCount - fileList.length}${lang.zhang}`,
+        );
+      }
+      if (isPictureCompress && fileSize > compressThreshold) {
+        // 图片压缩
+        let reader = new FileReader(),
+          img = new Image();
+        reader.readAsDataURL(file);
+        reader.onload = function(e: any) {
+          img.src = e.target.result;
+        };
+        img.onload = function(e: Event) {
+          const el = e.target as HTMLImageElement;
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d') as CanvasRenderingContext2D;
+
+          const originWidth = el.width;
+          const originHeight = el.height;
+
+          if (!isSizeImage(originWidth, originHeight)) {
+            reject(`上传格式错误`);
+          }
+
+          canvas.width = originWidth;
+          canvas.height = originHeight;
+
+          context.clearRect(0, 0, originWidth, originHeight);
+          context.drawImage(img, 0, 0, originWidth, originHeight);
+          canvas.toBlob(
+            blob => {
+              const imgFile = new File([blob as BlobPart], file.name, {
+                type: file.type,
+              }); // 将blob对象转化为图片文件
+              const imgFileSize = imgFile.size / 1024 / 1024;
+              console.log(`压缩后：${imgFileSize}M`);
+              if (imgFileSize > maxSize) {
+                message.error(`${lang.maxSizeLimit}${maxSize}M！`);
+                reject(`${lang.maxSizeLimit}${maxSize}M！`);
+              } else {
+                resolve(imgFile);
+              }
+            },
+            file.type,
+            pictureQuality,
+          );
+        };
+      } else {
+        resolve(file);
+      }
+    });
   };
 
   // 预览图片
@@ -204,7 +217,7 @@ const DpUploadImage: React.FC<PropsWithChildren<
     console.log(file.status, fileList);
     if (file.status === 'done') {
       console.log('上传成功');
-      setFileList(fileList);
+      console.log(fileList);
       onChange && onChange(fileList);
     } else {
       setFileList(fileList); // uploading removed
@@ -243,6 +256,7 @@ const DpUploadImage: React.FC<PropsWithChildren<
   );
 
   const uploadImageProps = {
+    accept: 'image/*',
     action: reqUrl,
     headers,
     data: reqParams,

@@ -14,26 +14,27 @@ const Demo = () => {
   };
 
   const handleChange = (v: any) => {
-    console.log(v[0].response && v[0].response.result[0]);
+    console.log(v);
+    // console.log(v[0].response && v[0].response.result[0]);
   };
 
   return (
     <Form form={form}>
       <FormItem name="image1">
         <DpUploadImage
-          reqUrl="http://platform-gateway.platform.svc.dragon/boss/file/uploadImgs"
-          headers={{
-            Token: localStorage.getItem('token'),
-          }}
-          reqParams={{
+          reqUrl="/core/mate/uploadMaterial"
+          /* reqParams={{
             productType: 'LS',
             channel: 'platform',
             moduleId: 'equity',
-          }}
+          }} */
           onChange={handleChange}
+          isPictureCompress={true}
+          compressThreshold={1}
+          pictureQuality={0.8}
         />
       </FormItem>
-      <FormItem name="image2">
+      {/* <FormItem name="image2">
         <DpUploadImage
           reqUrl="http://platform-gateway.platform.svc.dragon/boss/file/uploadImgs"
           headers={{
@@ -74,7 +75,7 @@ const Demo = () => {
             },
           ]}
         />
-      </FormItem>
+      </FormItem> */}
       <Button type="primary" onClick={submit}>
         获取数据
       </Button>

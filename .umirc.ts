@@ -15,5 +15,14 @@ export default defineConfig({
   alias: {
     '@': resolve(__dirname, './src'),
   },
+  proxy: {
+    '/core': {
+      target: 'https://sit.miaocode.com',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/core': '/core',
+      },
+    },
+  },
   // more config: https://d.umijs.org/config
 });
