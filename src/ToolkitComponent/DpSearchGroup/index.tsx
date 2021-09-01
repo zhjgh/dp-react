@@ -69,25 +69,28 @@ const DpSearchGroup: React.FC<PropsWithChildren<
       .validateFields()
       .then(values => {
         console.log('values', values);
-        onSearch({
-          ...fields
-            .filter(v => v.type === 'rangePicker')
-            .map(v => v.label)
-            .reduce(
-              (acc, [start, end]) => ({
-                ...acc,
-                [start]:
-                  values[start] && values[start][0]
-                    ? values[start][0].format('YYYY-MM-DD')
-                    : undefined,
-                [end]:
-                  values[start] && values[start][1]
-                    ? values[start][1].format('YYYY-MM-DD')
-                    : undefined,
-              }),
-              values,
-            ),
-        });
+        onSearch(
+          {
+            ...fields
+              .filter(v => v.type === 'rangePicker')
+              .map(v => v.label)
+              .reduce(
+                (acc, [start, end]) => ({
+                  ...acc,
+                  [start]:
+                    values[start] && values[start][0]
+                      ? values[start][0].format('YYYY-MM-DD')
+                      : undefined,
+                  [end]:
+                    values[start] && values[start][1]
+                      ? values[start][1].format('YYYY-MM-DD')
+                      : undefined,
+                }),
+                values,
+              ),
+          },
+          true,
+        );
       })
       .catch(error => {
         console.log(error);
@@ -103,7 +106,7 @@ const DpSearchGroup: React.FC<PropsWithChildren<
   return (
     <Card>
       <Form form={form}>
-        <Row style={{ marginBottom: 10 }}>
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           {fields.map((v, i) => (
             <Col
               className="gutter-row"
@@ -112,8 +115,13 @@ const DpSearchGroup: React.FC<PropsWithChildren<
                   ? (v.label as string)
                   : v.label[0]
               }
-              span={isCollapsed && i >= maxNum ? 0 : colSpan}
-              style={{ paddingRight: 16 }}
+              // span={isCollapsed && i >= maxNum ? 0 : colSpan}
+              // span={6}
+              xs={24}
+              sm={12}
+              md={12}
+              lg={8}
+              xl={6}
             >
               <Form.Item
                 label={
@@ -137,18 +145,20 @@ const DpSearchGroup: React.FC<PropsWithChildren<
         </Row>
 
         <Row justify="end" align="middle">
-          <Col span={colSpan} style={{ paddingRight: 16, textAlign: 'right' }}>
-            <Button type="primary" onClick={handleSearch}>
+          <Col>
+            <Button
+              type="primary"
+              onClick={handleSearch}
+              style={{ marginRight: '10px' }}
+            >
               {lang.search}
             </Button>
             {fields.length > maxNum ? (
-              <Button style={{ marginLeft: 8 }} onClick={toggleCollapse}>
+              <Button onClick={toggleCollapse} style={{ marginRight: '10px' }}>
                 {isCollapsed ? lang.moreSearch : lang.lessSearch}
               </Button>
             ) : null}
-            <Button style={{ marginLeft: 8 }} onClick={handleClean}>
-              {lang.clean}
-            </Button>
+            <Button onClick={handleClean}>{lang.clean}</Button>
           </Col>
         </Row>
       </Form>

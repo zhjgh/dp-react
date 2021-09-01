@@ -127,7 +127,10 @@ const DpUploadImage: React.FC<PropsWithChildren<
   };
 
   // 上传前的判断
-  const handleBeforeUpload = (file: RcFile, fileLists: RcFile[]) => {
+  const handleBeforeUpload = (
+    file: RcFile,
+    fileLists: RcFile[],
+  ): Promise<any> => {
     const {
       isPictureCompress = false,
       compressThreshold = 1,

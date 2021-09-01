@@ -18,8 +18,8 @@ function emptyString(obj: any) {
 export interface IDpTableProps {
   ownColumns(updatefunc: any): {}; // 必填，表格列配置回调方法
   fetchAction(params: any): {}; // 必填，异步请求方法
-  fetchParams: object; // 请求附加参数
   searchParams: object; // 搜索项参数
+  fetchParams?: object; // 请求附加参数
   baseProps?: any; // antd Table基础配置，默认rowKey是id
   pageSize?: number;
 }
@@ -60,7 +60,7 @@ const DpTable: React.FC<IDpTableProps> = props => {
       return err;
     });
     setLoading(false);
-    if (res.state === '1') {
+    if (res && res.state === '1') {
       const { page, list } = res.result;
       setTotal(page.total || 0);
       setDataSource(list || []);
@@ -68,7 +68,10 @@ const DpTable: React.FC<IDpTableProps> = props => {
   }
 
   useEffect(() => {
-    currentRef.current = 1;
+    console.log('searchParams', searchParams);
+    if (searchParams.current === 1) {
+      currentRef.current = 1;
+    }
     fetchDataWarp();
   }, [fetchDataWarp]);
 
@@ -93,6 +96,9 @@ const DpTable: React.FC<IDpTableProps> = props => {
     onChange: async (payload: { current: number; pageSize: number }) => {
       currentRef.current = payload.current;
       fetchData();
+    },
+    scroll: {
+      x: 500,
     },
     rowKey: (record: any) => record.id,
     ...baseProps,

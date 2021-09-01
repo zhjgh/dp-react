@@ -3,28 +3,32 @@ import { Popconfirm, Button, Card } from 'antd';
 import DpSearchGroup from '@/ToolkitComponent/DpSearchGroup';
 import DpTable from '@/ToolkitComponent/DpTable';
 import DpModal from './components/Modal';
-import api from '@/services/api';
+import * as api from '@/services/api';
 import 'antd/dist/antd.css';
 
 const DpSearchTable: React.FC = () => {
   const [searchParams, setSearchParams] = useState({});
   const [currentRecord, setCurrentRecord] = useState({});
   const [visible, setVisible] = useState(false);
-  const [isClean, setIsClean] = useState(false);
-  const isCleanRef = useRef(false);
+  // const [isClean, setIsClean] = useState(false);
 
   // 搜索栏数据
   const fields = [
-    { label: '编码', name: 'code' },
-    { label: '名称', name: 'name' },
+    { label: 'ID', name: 'id' },
+    { label: '姓名', name: 'name' },
     {
-      label: '状态',
-      name: 'status',
+      label: '性别',
+      name: 'sex',
       type: 'select',
       options: [
-        { label: '禁用', value: '0' },
-        { label: '启用', value: '1' },
+        { label: '男', value: 0 },
+        { label: '女', value: 1 },
       ],
+    },
+    {
+      label: '出生范围',
+      name: 'birthDate',
+      type: 'rangePicker',
     },
   ];
 
@@ -32,31 +36,39 @@ const DpSearchTable: React.FC = () => {
   const getColumn = (updateMethod: any) => {
     return [
       {
-        title: '编码',
-        dataIndex: 'code',
-        key: 'code',
+        title: 'ID',
+        dataIndex: 'id',
+        key: 'id',
       },
       {
-        title: '名称',
+        title: '姓名',
         dataIndex: 'name',
         key: 'name',
       },
       {
-        title: '繁体名称',
-        dataIndex: 'name2',
-        key: 'name2',
+        title: '头像',
+        dataIndex: 'avatar',
+        key: 'avatar',
+        render: (text: string) => {
+          return <img src={text} width={60} height={60} />;
+        },
       },
       {
-        title: '英文名称',
-        dataIndex: 'ename',
-        key: 'ename',
+        title: '年龄',
+        dataIndex: 'age',
+        key: 'age',
       },
       {
-        title: '状态',
-        dataIndex: 'status',
-        key: 'status',
+        title: '出生日期',
+        dataIndex: 'birthDate',
+        key: 'birthDate',
+      },
+      {
+        title: '性别',
+        dataIndex: 'sex',
+        key: 'sex',
         render: (text: any) => {
-          return text === 0 ? '禁用' : '启用';
+          return text === 0 ? '男' : '女';
         },
       },
       {
@@ -74,11 +86,11 @@ const DpSearchTable: React.FC = () => {
                 编辑
               </Button>
               <Popconfirm
-                title="此操作将永久删除该项目, 是否继续?"
+                title="此操作将永久删除该人, 是否继续?"
                 okText="确定"
                 cancelText="取消"
                 onConfirm={async () => {
-                  const res: any = await api.deleteLanguage({ id: record.id });
+                  const res: any = await api.delItem({ id: record.id });
                   if (res.state === '1') {
                     updateMethod();
                   }
@@ -94,7 +106,14 @@ const DpSearchTable: React.FC = () => {
   };
 
   // 查询
-  const onSearch = (values: any) => {
+  const onSearch = (values: any, isSearch: boolean) => {
+    console.log(isSearch);
+    if (isSearch) {
+      values = {
+        ...values,
+        current: 1,
+      };
+    }
     setSearchParams(values);
   };
 
@@ -102,12 +121,14 @@ const DpSearchTable: React.FC = () => {
   const onOperate = (record: any) => {
     setVisible(true);
     setCurrentRecord(record);
-    setIsClean(false);
   };
 
   return (
     <Fragment>
-      <DpSearchGroup fields={fields} onSearch={onSearch} isClean={isClean} />
+      <DpSearchGroup
+        fields={fields}
+        onSearch={values => onSearch({ ...values }, true)}
+      />
       <Card style={{ marginTop: '20px' }}>
         <Button
           type="primary"
@@ -118,8 +139,7 @@ const DpSearchTable: React.FC = () => {
         </Button>
         <DpTable
           ownColumns={(updatefunc: any) => getColumn(updatefunc)}
-          fetchAction={api.queryLanguage}
-          fetchParams={{ lg: 'zh-cn' }}
+          fetchAction={api.getList}
           searchParams={searchParams}
         />
       </Card>
@@ -128,11 +148,10 @@ const DpSearchTable: React.FC = () => {
         currentRecord={currentRecord}
         onClose={() => {
           setVisible(false);
-          setIsClean(true);
         }}
         onConfirm={() => {
           setVisible(false);
-          setIsClean(true);
+          onSearch({ ...searchParams }, false);
         }}
       />
     </Fragment>

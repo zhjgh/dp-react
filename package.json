@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "dp-react",
-  "version": "0.3.6",
+  "version": "1.0.0",
   "description": "基于antd4.x封装的业务组件",
   "homepage": "https://github.com/zhjgh/dp-react/",
   "license": "MIT",
@@ -32,6 +32,7 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
+  "files": ["dist"],
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
       "prettier --write"

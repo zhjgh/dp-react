@@ -1,9 +1,9 @@
 // @ts-nocheck
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Modal, Form, Row, Col, Input, Select } from 'antd';
+import { Modal, Form, Row, Col, Input, Select, DatePicker } from 'antd';
 import { getRules, getLayout, createDicNodes } from '@/utils';
-import api from '@/services/api';
+import * as api from '@/services/api';
 
 const { createSelectOption } = createDicNodes;
 const FormItem = Form.Item;
@@ -17,9 +17,9 @@ const Index = (props: any) => {
   const modalProps = {
     visible,
     confirmLoading,
-    title: currentRecord.id ? '修改语言' : '新增语言',
-    onOk() {
-      form
+    title: currentRecord.id ? '修改人员' : '新增人员',
+    async onOk() {
+      /* form
         .validateFields()
         .then(async values => {
           setconfirmLoading(true);
@@ -29,23 +29,46 @@ const Index = (props: any) => {
               id: currentRecord.id,
               ...values,
             };
-            const res: any = await api.updateLanguage(params);
+            const res: any = await api.updateItem(params);
             if (res.state === '1') {
               onConfirm();
             }
             setconfirmLoading(false);
           } else {
             // 新增
-            const res: any = await api.addLanguage(values);
+            const res: any = await api.addItem(values);
             if (res.state === '1') {
               onConfirm();
             }
             setconfirmLoading(false);
           }
         })
-        .catch(() => {
+        .catch((error) => {
+          console.log(error)
           setconfirmLoading(false);
-        });
+        }); */
+      let values = form.getFieldsValue();
+      console.log('values', values);
+      setconfirmLoading(true);
+      if (currentRecord.id) {
+        // 编辑
+        const params = {
+          id: currentRecord.id,
+          ...values,
+        };
+        const res: any = await api.updateItem(params);
+        if (res.state === '1') {
+          onConfirm();
+        }
+        setconfirmLoading(false);
+      } else {
+        // 新增
+        const res: any = await api.addItem(values);
+        if (res.state === '1') {
+          onConfirm();
+        }
+        setconfirmLoading(false);
+      }
     },
     onCancel: () => onClose(),
   };
@@ -59,61 +82,46 @@ const Index = (props: any) => {
     };
   }, [visible]);
 
+  const hanleDatePicker = (date, dateString) => {
+    console.log(date, dateString);
+  };
+
   return (
     <Modal {...modalProps}>
       <Form form={form}>
         <Row>
           <Col span={24}>
-            <FormItem
-              name="code"
-              {...getRules('编号', true, true, [
-                { max: 10 },
-                { pattern: /[^\u4e00-\u9fa5]/, message: '不能输入中文字符' },
-              ])}
-              {...layout}
-            >
+            <FormItem name="id" {...getRules('ID', true, true)} {...layout}>
               <Input disabled={currentRecord.id ? true : false} />
             </FormItem>
           </Col>
           <Col span={24}>
-            <FormItem
-              name="name"
-              {...getRules('名称', true, true, [{ max: 30 }])}
-              {...layout}
-            >
+            <FormItem name="name" {...getRules('姓名', true, true)} {...layout}>
               <Input />
             </FormItem>
           </Col>
           <Col span={24}>
-            <FormItem
-              name="name2"
-              {...getRules('繁体名称', true, true, [{ max: 30 }])}
-              {...layout}
-            >
+            <FormItem name="age" {...getRules('年龄', true, true)} {...layout}>
               <Input />
             </FormItem>
           </Col>
-          <Col span={24}>
+          {/* <Col span={24}>
             <FormItem
-              name="ename"
-              {...getRules('英文名称', true, true, [{ max: 30 }])}
+              name="birthDate"
+              {...getRules('出生日期', true, true, [{ max: 30 }])}
               {...layout}
             >
-              <Input />
+              <DatePicker onChange={hanleDatePicker} />
             </FormItem>
-          </Col>
+          </Col> */}
           <Col span={24}>
-            <FormItem
-              name="status"
-              {...getRules('状态', true, false)}
-              {...layout}
-            >
+            <FormItem name="sex" {...getRules('性别')} {...layout}>
               <Select placeholder="请选择">
                 {createSelectOption({
                   list:
                     [
-                      ['禁用', 0],
-                      ['启用', 1],
+                      ['男', 0],
+                      ['女', 1],
                     ] || [],
                 })}
               </Select>
