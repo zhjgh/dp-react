@@ -125,6 +125,7 @@ const DpSearchTable: React.FC = () => {
       >
         新增
       </Button>
+
       <Modal
         width={1000}
         visible={visible}
@@ -152,7 +153,7 @@ const DpSearchTable: React.FC = () => {
           </Button>
           <DpTable
             ownColumns={(updatefunc: any) => getColumn(updatefunc)}
-            fetchAction={api.getList}
+            fetchAction={api.getPage}
             fetchParams={{ lg: 'zh-cn' }}
             searchParams={searchParams}
           />

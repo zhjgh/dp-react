@@ -43,7 +43,7 @@ const errorHandler = (error: { response: Response }): Response => {
 
 /** 配置request请求时的默认参数 */
 const request = extend({
-  prefix: '/api',
+  prefix: '',
   errorHandler, // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
   timeout: 3000, // 请求超时时间

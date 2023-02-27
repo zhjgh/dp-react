@@ -1879,6 +1879,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/braft-editor@^2.2.0":
+  version "2.2.0"
+  resolved "http://npm.ifengqun.com:4873/@types%2fbraft-editor/-/braft-editor-2.2.0.tgz#4ea310ff8e1e9ed88a49ea2e64b40254f937f026"
+  integrity sha512-X8WYVaIgWXL77Ab47xtD3EVb4FIqXzVb7LtTw1PeE8Fq1nu1l/hYAn9KbXP/oLRkMLtnNefVNlN2F3Q+Ocj1Tw==
+  dependencies:
+    braft-editor "*"
+
 "@types/classnames@^2.2.11":
   version "2.3.1"
   resolved "http://139.196.86.36:4873/@types%2fclassnames/-/classnames-2.3.1.tgz#3c2467aa0f1a93f1f021e3b9bcf938bd5dfdc0dd"
@@ -3149,7 +3156,7 @@ braft-convert@^2.3.0:
     draft-convert "^2.0.0"
     draft-js "^0.10.3"
 
-braft-editor@^2.3.9:
+braft-editor@*, braft-editor@^2.3.9:
   version "2.3.9"
   resolved "http://139.196.86.36:4873/braft-editor/-/braft-editor-2.3.9.tgz#fd2b8e23ea71191016579a1ed8231d16ad8f5b4a"
   integrity sha512-mqdPk/zI2dhFK8tW/A4Qj/AkkARLh5L/niNw+iif5wFqb6zh15rMlrShgz1nWO/QXyAKr8XtDgxiBbR0zWwtRg==

@@ -32,7 +32,9 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
       "prettier --write"
@@ -61,6 +63,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.13.8",
+    "@types/braft-editor": "^2.2.0",
     "@types/classnames": "^2.2.11",
     "@types/lodash": "^4.14.168",
     "@types/react-dnd-html5-backend": "^3.0.2",

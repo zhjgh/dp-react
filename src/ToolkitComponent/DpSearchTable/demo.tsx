@@ -129,6 +129,7 @@ const DpSearchTable: React.FC = () => {
         fields={fields}
         onSearch={values => onSearch({ ...values }, true)}
       />
+
       <Card style={{ marginTop: '20px' }}>
         <Button
           type="primary"
@@ -139,10 +140,11 @@ const DpSearchTable: React.FC = () => {
         </Button>
         <DpTable
           ownColumns={(updatefunc: any) => getColumn(updatefunc)}
-          fetchAction={api.getList}
+          fetchAction={api.getPage}
           searchParams={searchParams}
         />
       </Card>
+
       <DpModal
         visible={visible}
         currentRecord={currentRecord}

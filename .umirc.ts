@@ -15,7 +15,8 @@ export default defineConfig({
   alias: {
     '@': resolve(__dirname, './src'),
   },
-  proxy: {
+  mfsu: {},
+  /* proxy: {
     '/core': {
       target: 'https://sit.miaocode.com',
       changeOrigin: true,
@@ -23,6 +24,6 @@ export default defineConfig({
         '^/core': '/core',
       },
     },
-  },
+  }, */
   // more config: https://d.umijs.org/config
 });

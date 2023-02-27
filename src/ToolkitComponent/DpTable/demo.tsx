@@ -85,7 +85,7 @@ const demo = () => {
   return (
     <DpTable
       ownColumns={(updatefunc: any) => getColumn(updatefunc)}
-      fetchAction={api.getList}
+      fetchAction={api.getPage}
       fetchParams={{ lg: 'zh-cn' }}
       searchParams={searchParams}
     />

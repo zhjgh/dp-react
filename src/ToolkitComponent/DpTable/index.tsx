@@ -60,8 +60,9 @@ const DpTable: React.FC<IDpTableProps> = props => {
       return err;
     });
     setLoading(false);
-    if (res && res.state === '1') {
-      const { page, list } = res.result;
+    console.log('分页请求返回数据', res);
+    if (res && res.message === 'success') {
+      const { page, list } = res.data;
       setTotal(page.total || 0);
       setDataSource(list || []);
     }
